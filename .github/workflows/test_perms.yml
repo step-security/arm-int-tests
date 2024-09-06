@@ -9,7 +9,7 @@ jobs:
     permissions:
       contents: read
       issues: write
-      pull-requests: read
+      pull-requests: write
 
     runs-on: ubuntu-latest
     steps:
