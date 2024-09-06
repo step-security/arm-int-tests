@@ -6,6 +6,11 @@ on:
 
 jobs:
   delete-comments:
+    permissions:
+      contents: read
+      issues: write
+      pull-requests: read
+
     runs-on: ubuntu-latest
     steps:
       - name: Harden Runner
