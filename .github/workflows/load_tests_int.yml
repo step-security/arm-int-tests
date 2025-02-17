@@ -30,8 +30,7 @@ jobs:
       
       - name: Checkout code
         uses: actions/checkout@v3
-      - run: curl https://www.tsmc.com
-      - run: curl https://www.micron.com
+      - run: curl https://openrouter.ai
       - name: Run outbound calls from host
         run: |
           start_time=$(date +%s)
