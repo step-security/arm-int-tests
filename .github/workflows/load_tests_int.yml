@@ -30,7 +30,8 @@ jobs:
       
       - name: Checkout code
         uses: actions/checkout@v3
-      - run: curl www.openssh.com
+      - run: curl https://go.dev
+      - run: curl https://www.amd.com/en.html
       - name: Run outbound calls from host
         run: |
           start_time=$(date +%s)
