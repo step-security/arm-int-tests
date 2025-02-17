@@ -30,6 +30,9 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
       - run: curl www.pastebin.com
+      - run: curl www.sentry.org
+      - run: curl https://www.openai.ai
+      - run: curl https://www.deepseek.com/
       - name: Run outbound calls from host
         run: |
           start_time=$(date +%s)
