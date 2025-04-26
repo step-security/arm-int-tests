@@ -9,13 +9,16 @@ on:
         default: '100' # Default value as a string
   pull_request:
 
+permissions:
+  contents: read
+
 jobs:
   setup-job:
     name: Setup Job
     runs-on: ubuntu-24.04-arm
     steps:
       - name: Harden Runner
-        uses: step-security/harden-runner@int-sh
+        uses: step-security/harden-runner@668ad3cce4bd0191ec8fdd9868adcb7521a9dacd # int-sh
         with:
           egress-policy: audit
 
@@ -31,12 +34,12 @@ jobs:
         job_id: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
     steps:
       - name: Harden Runner
-        uses: step-security/harden-runner@int-sh
+        uses: step-security/harden-runner@668ad3cce4bd0191ec8fdd9868adcb7521a9dacd # int-sh
         with:
           egress-policy: audit
 
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3.6.0
       
       - name: Make a curl request
         run: curl https://google.com

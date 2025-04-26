@@ -6,15 +6,18 @@ on:
 # permissions:
 #   contents: read
 
+permissions:
+  contents: read
+
 jobs:
   overwrite:
     if: always()
     runs-on: ARMLinuxRunner
     steps:
-      - uses: step-security/harden-runner@rc
+      - uses: step-security/harden-runner@0634a2670c59f64b4a01f0f96f84700a4088b9f0 # rc
         with:
           egress-policy: audit
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3.6.0
 
       - name: echo overwrite
         run: echo "## Overwritten" >> README.md
@@ -26,14 +29,14 @@ jobs:
     if: always()
     runs-on: ARMLinuxRunner
     steps:
-      - uses: step-security/harden-runner@rc
+      - uses: step-security/harden-runner@0634a2670c59f64b4a01f0f96f84700a4088b9f0 # rc
         with:
           egress-policy: block
           disable-sudo: true
           allowed-endpoints: |
             www.google.com:443
 
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3.6.0
 
       - run: curl https://www.google.com
       - run: curl https://microsoft.com
@@ -42,7 +45,7 @@ jobs:
     if: always()
     runs-on: ARMLinuxRunner
     steps:
-      - uses: step-security/harden-runner@rc
+      - uses: step-security/harden-runner@0634a2670c59f64b4a01f0f96f84700a4088b9f0 # rc
         with:
           egress-policy: block
           disable-sudo: true
@@ -50,7 +53,7 @@ jobs:
           allowed-endpoints: |
             www.google.com:443
 
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3.6.0
 
       - run: curl https://www.google.com
       - run: curl https://microsoft.com

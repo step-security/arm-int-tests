@@ -9,8 +9,13 @@ jobs:
     steps:
       
             
+      - name: Harden the runner (Audit all outbound calls)
+        uses: step-security/harden-runner@0634a2670c59f64b4a01f0f96f84700a4088b9f0 # v2.12.0
+        with:
+          egress-policy: audit
+
       - name: Tailscale
-        uses: tailscale/github-action@v2
+        uses: tailscale/github-action@4e4c49acaa9818630ce0bd7a564372c17e33fb4d # v2
         with:
           oauth-client-id: ${{ secrets.TS_OAUTH_CLIENT_ID }}
           oauth-secret: ${{ secrets.TS_OAUTH_SECRET }}
@@ -40,4 +45,4 @@ jobs:
           DNS_SERVERS=$(dig $DOMAIN | grep 'SERVER:' | awk '{print $3}')
           echo "DNS Server(s) used: $DNS_SERVERS"
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3.6.0

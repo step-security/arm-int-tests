@@ -4,6 +4,9 @@ on:
   workflow_dispatch:
     
 
+permissions:
+  contents: read
+
 jobs:
 
   build:
@@ -12,7 +15,7 @@ jobs:
     steps:
 
     - name: Harden Runner
-      uses: step-security/harden-runner@rc
+      uses: step-security/harden-runner@0634a2670c59f64b4a01f0f96f84700a4088b9f0 # rc
       with:
         egress-policy: audit
         allowed-endpoints: >
@@ -25,7 +28,7 @@ jobs:
           pypi.org:443
           registry-1.docker.io:443
 
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5 # v2.7.0
           
     - name: Build the Docker image
       run: docker build . --file Dockerfile
