@@ -1,0 +1,66 @@
+name: Upload and Download Artifact
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    outputs:
+      artifact-name: ${{ steps.upload.outputs.artifact-name }}
+
+    steps:
+      - name: Harden the runner (Audit all outbound calls)
+        uses: step-security/harden-runner@rc
+        with:
+          egress-policy: block
+          allowed-endpoints: >
+            github.com:443
+            google.com:443
+            
+
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: call google
+        run: |
+          dig google.com
+          curl https://google.com
+          
+          
+      - name: call results-receiver.actions.githubusercontent.com
+        run: |
+          dig results-receiver.actions.githubusercontent.com
+          curl https://results-receiver.actions.githubusercontent.com
+          echo "Hello from the build job!" > output.txt
+
+      - name: Upload artifact
+        id: upload
+        uses: actions/upload-artifact@v4
+        with:
+          name: my-artifact
+          path: output.txt
+
+  consume:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Harden the runner (Audit all outbound calls)
+        uses: step-security/harden-runner@rc
+        with:
+          egress-policy: block
+          allowed-endpoints: >
+            github.com:443
+            receiver.actions.githubusercontent.com:443
+            
+
+      - name: Download artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: my-artifact
+
+      - name: Read artifact content
+        run: |
+          echo "Contents of artifact:"
+          cat output.txt

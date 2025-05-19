@@ -33,7 +33,7 @@ jobs:
           done
   
   test-docker-outbound:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     steps:
       - name: Harden Runner
         uses: step-security/harden-runner@rc
@@ -134,7 +134,7 @@ jobs:
       - run: cat /etc/resolv.conf
       - run: cat /run/systemd/resolve/resolv.conf
   test-long-running-docker:
-    runs-on: ubuntu-latest
+    runs-on: LargeRunner
     steps:
       - name: Harden Runner
         uses: step-security/harden-runner@rc

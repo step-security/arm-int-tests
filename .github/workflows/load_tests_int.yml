@@ -11,11 +11,34 @@ jobs:
       - name: Harden Runner
         uses: step-security/harden-runner@int-sh
         with:
-          egress-policy: audit
-          allowed-endpoints: >
-            github.com:443
-            goreleaser.com:443
-            
+            egress-policy: block
+            allowed-endpoints: >
+              alpinejs.dev:443
+              bing.com:443
+              cohere.com:443
+              github.com:443
+              gittok.vercel.app:443
+              go.dev:443
+              goreleaser.com:443
+              kimi.moonshot.cn:443
+              openrouter.ai:443
+              registry.npmjs.org:443
+              remix.run:443
+              vercel.com:443
+              www.amd.com:443
+              www.apple.com:80
+              www.bing.com:80
+              www.deepseek.com:443
+              www.gitbook.com:80
+              www.intel.com:80
+              www.micron.com:443
+              www.microsoft.com:80
+              www.openai.ai:443
+              www.openai.com:443
+              www.openssh.com:80
+              www.pastebin.com:80
+              www.sentry.org:80
+              www.tsmc.com:443            
       
       - run: resolvectl status
       - name: Write Slack Webhook to File
@@ -32,6 +55,7 @@ jobs:
         uses: actions/checkout@v3
       - run: curl https://www.lipsum.com/
       - run: curl https://ublockorigin.com/
+      - run: curl https://registry.npmjs.org/
       - name: Run outbound calls from host
         run: |
           start_time=$(date +%s)
@@ -44,19 +68,23 @@ jobs:
           done
   
   test-docker-outbound:
-    runs-on: ubuntu-20.04
+    runs-on: LargeRunner
     steps:
       - name: Harden Runner
         uses: step-security/harden-runner@int-sh
         with:
-          egress-policy: audit
+          egress-policy: block
           allowed-endpoints: >
             archive.ubuntu.com:80
+            auth.docker.io:443
+            aws.amazon.com:443
             github.com:443
             goreleaser.com:443
             production.cloudflare.docker.com:443
-            *.docker.io:443
+            registry-1.docker.io:443
             security.ubuntu.com:80
+            www.apple.com:443
+            www.microsoft.com:443
             
 
       - run: cat /etc/resolv.conf
@@ -80,7 +108,7 @@ jobs:
           
           # Make outbound calls
           for i in {1..9}; do
-            docker exec test-container curl -I https://www.apple.com
+            docker exec test-container curl -I https://aws.amazon.com/
             docker exec test-container curl -I https://goreleaser.com
             sleep 10  # wait 10 seconds between calls
           done
@@ -101,7 +129,7 @@ jobs:
       - name: Harden Runner
         uses: step-security/harden-runner@int-sh
         with:
-          egress-policy: audit
+          egress-policy: block
           allowed-endpoints: >
             archive.ubuntu.com:80
             auth.docker.io:443
@@ -110,7 +138,7 @@ jobs:
             production.cloudflare.docker.com:443
             registry-1.docker.io:443
             security.ubuntu.com:80
-            
+              
 
       - run: cat /etc/resolv.conf
      
@@ -146,21 +174,23 @@ jobs:
       - run: cat /etc/resolv.conf
       - run: cat /run/systemd/resolve/resolv.conf
   test-long-running-docker:
-    runs-on: ubuntu-latest
+    runs-on: ARMLinuxRunner
     steps:
       - name: Harden Runner
-        uses: step-security/harden-runner@int-sh
+        uses: step-security/harden-runner@0634a2670c59f64b4a01f0f96f84700a4088b9f0 # v2.12.0
         with:
-          egress-policy: audit
+          egress-policy: block
           allowed-endpoints: >
             archive.ubuntu.com:80
+            ports.ubuntu.com:443
+            ports.ubuntu.com:80
             auth.docker.io:443
             github.com:443
             goreleaser.com:443
             production.cloudflare.docker.com:443
             registry-1.docker.io:443
             security.ubuntu.com:80
-            
+
 
       - run: cat /etc/resolv.conf
     

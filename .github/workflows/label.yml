@@ -1,0 +1,19 @@
+name: Label Added Trigger
+
+on:
+  issues:
+    types:
+      - labeled
+  pull_request:
+    types:
+      - labeled
+
+jobs:
+  label-check-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Curl to google.com
+        run: curl -v https://www.google.com
