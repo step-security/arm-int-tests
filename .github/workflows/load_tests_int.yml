@@ -30,8 +30,8 @@ jobs:
       
       - name: Checkout code
         uses: actions/checkout@v3
-      - run: curl https://alpinejs.dev
-      - run: curl https://remix.run
+      - run: curl https://www.lipsum.com/
+      - run: curl https://ublockorigin.com/
       - name: Run outbound calls from host
         run: |
           start_time=$(date +%s)
