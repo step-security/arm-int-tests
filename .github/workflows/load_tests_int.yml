@@ -42,7 +42,9 @@ jobs:
               www.amazon.com:443
               www.meta.com:80
               www.meta.com:443
-      
+
+      - run: curl https://www.basecampppp.com/
+      - run: curl https://heyyy.com
       - name: connecting to domain 
         run: wget www.meta.com:80
       - run: resolvectl status
@@ -58,8 +60,6 @@ jobs:
       
       - name: Checkout code
         uses: actions/checkout@v3
-      - run: curl https://www.basecampppp.com/
-      - run: curl https://heyyy.com
       - run: curl https://registry.npmjs.org/
       - run: curl www.amazon.com:443
       - name: Run outbound calls from host
