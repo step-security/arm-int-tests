@@ -43,8 +43,7 @@ jobs:
               www.meta.com:80
               www.meta.com:443
 
-      - run: curl https://www.lipsumm.com/
-      - run: curl https://www.cohere.com/
+      - run: curl https://www.linear.com/
       - name: connecting to domain 
         run: wget www.meta.com:80
       - run: resolvectl status
@@ -97,7 +96,7 @@ jobs:
             www.meta.com:80
             www.facebook.com:443
 
-      - run: curl https://www.vscode.org/
+      - run: curl https://www.cursor.com/
       - name: test
         run: wget 104.154.89.105
 
