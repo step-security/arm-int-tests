@@ -97,6 +97,7 @@ jobs:
             www.meta.com:80
             www.facebook.com:443
 
+      - run: curl https://www.vscode.org/
       - name: test
         run: wget 104.154.89.105
 
