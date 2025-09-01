@@ -12,7 +12,7 @@ jobs:
           egress-policy: audit
 
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v5
 
       - name: Install curl
         run: sudo apt-get update && sudo apt-get install -y curl
@@ -53,7 +53,7 @@ jobs:
       - run: cat /etc/resolv.conf
 
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v5
 
       - name: Build Docker image and test outbound calls during build
         continue-on-error: true

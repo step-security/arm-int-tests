@@ -19,7 +19,7 @@ jobs:
       - uses: step-security/harden-runner@rc
         with:
           egress-policy: audit
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v5
       - uses: JasonEtco/create-an-issue@v2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -38,7 +38,7 @@ jobs:
         with:
           egress-policy: audit
 
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - run: "echo '// changes' >> main.js"
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v5
@@ -59,7 +59,7 @@ jobs:
         with:
           egress-policy: audit
 
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Comment PR
         uses: thollander/actions-comment-pull-request@v2
@@ -80,7 +80,7 @@ jobs:
         with:
           egress-policy: audit
 
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: Invoke workflow without inputs
         uses: benc-uk/workflow-dispatch@v1
         with:

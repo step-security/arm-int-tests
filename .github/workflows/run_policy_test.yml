@@ -22,7 +22,7 @@ jobs:
 
 
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Use compromised action (should be blocked)
         uses: step-security/dummy-compromised-action@v1

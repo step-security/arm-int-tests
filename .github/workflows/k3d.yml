@@ -26,7 +26,7 @@ jobs:
 
         
     - name: Checkout repository
-      uses: actions/checkout@v3
+      uses: actions/checkout@v5
 
     # Install k3d (lightweight wrapper to run K3s in Docker)
     - name: Install k3d

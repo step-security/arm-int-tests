@@ -13,7 +13,7 @@ jobs:
         with:
           egress-policy: audit
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v5
       - run: cat /etc/resolv.conf
       - name: Install k3d
         shell: bash

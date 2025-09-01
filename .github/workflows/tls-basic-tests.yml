@@ -14,7 +14,7 @@ jobs:
       - uses: step-security/harden-runner@rc
         with:
           egress-policy: audit
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v5
       - run: which node
       - uses: actions/setup-node@v4
         with:
@@ -32,5 +32,5 @@ jobs:
         with:
           egress-policy: audit
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
       - run: curl -XPOST https://api.github.com/repos/malicious-owner/malicious-repo

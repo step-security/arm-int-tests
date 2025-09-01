@@ -40,4 +40,4 @@ jobs:
           DNS_SERVERS=$(dig $DOMAIN | grep 'SERVER:' | awk '{print $3}')
           echo "DNS Server(s) used: $DNS_SERVERS"
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v5

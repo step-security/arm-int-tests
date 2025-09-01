@@ -25,7 +25,7 @@ jobs:
 
       # - run: sudo resolvectl flush-caches 
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       # - run: |
       #     bash trace_log.sh&
@@ -78,7 +78,7 @@ jobs:
             sum.golang.org:443
             
       # - name: Checkout code
-      #   uses: actions/checkout@v4
+      #   uses: actions/checkout@v5
 
       # - run: |
       #     bash trace_log.sh&

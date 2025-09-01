@@ -24,7 +24,7 @@ jobs:
           egress-policy: audit
 
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v5
       
       - name: Sleep for 3 minutes on push
         if: github.event_name == 'push'
