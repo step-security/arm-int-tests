@@ -7,8 +7,12 @@ on:
         description: 'AMI ID to use for the runners'
         required: true
 
+permissions: {}
+
 jobs:
   test-host-outbound:
+    permissions:
+      contents: read  # for actions/checkout to fetch code
     runs-on:
       - runs-on=${{ github.run_id }}
       - runner=2cpu-linux-x64
@@ -16,7 +20,7 @@ jobs:
       
     steps:
       - name: Harden Runner
-        uses: step-security/harden-runner@rc
+        uses: step-security/harden-runner@17d38b322b06d1108e77a84fb02658a27c4a7eb0 # rc
         with:
           egress-policy: audit
           allowed-endpoints: >
@@ -60,6 +64,8 @@ jobs:
           done
   
   test-docker-outbound:
+    permissions:
+      contents: read  # for actions/checkout to fetch code
     runs-on:
       - runs-on=${{ github.run_id }}
       - runner=2cpu-linux-x64
@@ -67,7 +73,7 @@ jobs:
       
     steps:
       - name: Harden Runner
-        uses: step-security/harden-runner@rc
+        uses: step-security/harden-runner@17d38b322b06d1108e77a84fb02658a27c4a7eb0 # rc
         with:
           egress-policy: block
           allowed-endpoints: >
@@ -104,6 +110,8 @@ jobs:
       - run: cat /run/systemd/resolve/resolv.conf
   
   test-docker-build-outbound:
+    permissions:
+      contents: read  # for actions/checkout to fetch code
     runs-on:
       - runs-on=${{ github.run_id }}
       - runner=2cpu-linux-x64
@@ -111,7 +119,7 @@ jobs:
       
     steps:
       - name: Harden Runner
-        uses: step-security/harden-runner@rc
+        uses: step-security/harden-runner@17d38b322b06d1108e77a84fb02658a27c4a7eb0 # rc
         with:
           egress-policy: audit
           allowed-endpoints: >
@@ -149,6 +157,8 @@ jobs:
       - run: cat /run/systemd/resolve/resolv.conf
   
   test-long-running-docker:
+    permissions:
+      contents: read  # for actions/checkout to fetch code
     runs-on:
       - runs-on=${{ github.run_id }}
       - runner=2cpu-linux-x64
@@ -156,7 +166,7 @@ jobs:
       
     steps:
       - name: Harden Runner
-        uses: step-security/harden-runner@rc
+        uses: step-security/harden-runner@17d38b322b06d1108e77a84fb02658a27c4a7eb0 # rc
         with:
           egress-policy: block
           allowed-endpoints: >
