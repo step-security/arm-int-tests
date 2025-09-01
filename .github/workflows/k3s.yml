@@ -3,13 +3,17 @@ name: k3s Outbound Connectivity Test
 on:
   workflow_dispatch:
 
+permissions: {}
+
 jobs:
   k3s-test:
+    permissions:
+      contents: read  # for actions/checkout to fetch code
     runs-on: ubuntu-latest
 
     steps:
       - name: Harden Runner
-        uses: step-security/harden-runner@int-sh
+        uses: step-security/harden-runner@668ad3cce4bd0191ec8fdd9868adcb7521a9dacd # int-sh
         with:
           egress-policy: audit
       - name: Checkout repository
