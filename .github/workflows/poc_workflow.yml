@@ -18,7 +18,7 @@ jobs:
     if: ${{ github.event.inputs.run_only_anomalous != 'true' }}
     runs-on: ubuntu-22.04
     steps:
-      - uses: step-security/harden-runner@rc
+      - uses: step-security/harden-runner@17d38b322b06d1108e77a84fb02658a27c4a7eb0 # rc
         with:
          egress-policy: audit
      
@@ -92,7 +92,7 @@ jobs:
     if: ${{ github.event.inputs.run_only_anomalous != 'true' }}
     runs-on: ubuntu-latest
     steps:
-    - uses: step-security/harden-runner@rc
+    - uses: step-security/harden-runner@17d38b322b06d1108e77a84fb02658a27c4a7eb0 # rc
       with:
          egress-policy: audit
     - name: Checkout
@@ -106,7 +106,7 @@ jobs:
     if: ${{ github.event.inputs.run_only_anomalous != 'true' }}
     runs-on: ubuntu-latest
     steps:
-      - uses: step-security/harden-runner@rc
+      - uses: step-security/harden-runner@17d38b322b06d1108e77a84fb02658a27c4a7eb0 # rc
         with:
           egress-policy: audit
       - name: Checkout
@@ -119,7 +119,7 @@ jobs:
     if: ${{ github.event.inputs.run_only_anomalous != 'true' }}
     runs-on: ubuntu-latest
     steps:
-      - uses: step-security/harden-runner@rc
+      - uses: step-security/harden-runner@17d38b322b06d1108e77a84fb02658a27c4a7eb0 # rc
         with:
           egress-policy: audit
 
@@ -134,7 +134,7 @@ jobs:
     if: ${{ github.event.inputs.run_only_anomalous != 'true' }}
     runs-on: ubuntu-latest
     steps:
-    - uses: step-security/harden-runner@rc
+    - uses: step-security/harden-runner@17d38b322b06d1108e77a84fb02658a27c4a7eb0 # rc
       with:
          egress-policy: audit
     - name: Checkout code
@@ -157,17 +157,17 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-    - uses: step-security/harden-runner@rc
+    - uses: step-security/harden-runner@17d38b322b06d1108e77a84fb02658a27c4a7eb0 # rc
       with:
          egress-policy: audit
     - name: Checkout code
       uses: actions/checkout@v3
-    - uses: step-security/dummy-compromised-action@v1
+    - uses: step-security/dummy-compromised-action@c96c327cecdb71e8f031080ba8ad208feb25b13d # v1
   unauthorized-outbound-call:
     if: ${{ github.event.inputs.run_only_anomalous != 'true' }}
     runs-on: ubuntu-latest
     steps:
-    - uses: step-security/harden-runner@rc
+    - uses: step-security/harden-runner@17d38b322b06d1108e77a84fb02658a27c4a7eb0 # rc
       with:
          egress-policy: block
          allowed-endpoints: >
@@ -216,7 +216,7 @@ jobs:
     # echo "All 100 baseline runs triggered!"
     runs-on: ubuntu-latest
     steps:
-    - uses: step-security/harden-runner@rc
+    - uses: step-security/harden-runner@17d38b322b06d1108e77a84fb02658a27c4a7eb0 # rc
       with:
          egress-policy: audit
          

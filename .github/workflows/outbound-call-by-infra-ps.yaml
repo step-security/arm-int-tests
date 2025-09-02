@@ -3,11 +3,15 @@ name: Outbound network call by infra process
 on:
   workflow_dispatch: { }
 
+permissions: {}
+
 jobs:
   outbound-call:
+    permissions:
+      contents: read  # for actions/checkout to fetch code
     runs-on: ubuntu-latest
     steps:
-      - uses: step-security/harden-runner@rc
+      - uses: step-security/harden-runner@17d38b322b06d1108e77a84fb02658a27c4a7eb0 # rc
         with:
           egress-policy: audit
 
@@ -35,10 +39,12 @@ jobs:
           sleep 90   # keep the job alive long enough to see it run
 
   test-docker-build-outbound:
+    permissions:
+      contents: read  # for actions/checkout to fetch code
     runs-on: ubuntu-latest
     steps:
       - name: Harden Runner
-        uses: step-security/harden-runner@rc
+        uses: step-security/harden-runner@17d38b322b06d1108e77a84fb02658a27c4a7eb0 # rc
         with:
           egress-policy: block
           allowed-endpoints: >

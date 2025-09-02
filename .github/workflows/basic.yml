@@ -6,12 +6,16 @@ on:
 # permissions:
 #   contents: read
 
+permissions: {}
+
 jobs:
   overwrite:
+    permissions:
+      contents: read  # for actions/checkout to fetch code
     if: always()
     runs-on: ARMLinuxRunner
     steps:
-      - uses: step-security/harden-runner@rc
+      - uses: step-security/harden-runner@17d38b322b06d1108e77a84fb02658a27c4a7eb0 # rc
         with:
           egress-policy: audit
       - uses: actions/checkout@v3
@@ -23,10 +27,12 @@ jobs:
         run: echo "# Replaced" >> README2.md; mv README2.md README.md
 
   egress-test:
+    permissions:
+      contents: read  # for actions/checkout to fetch code
     if: always()
     runs-on: ARMLinuxRunner
     steps:
-      - uses: step-security/harden-runner@rc
+      - uses: step-security/harden-runner@17d38b322b06d1108e77a84fb02658a27c4a7eb0 # rc
         with:
           egress-policy: block
           disable-sudo: true
