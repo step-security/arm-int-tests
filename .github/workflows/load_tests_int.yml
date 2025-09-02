@@ -3,12 +3,16 @@ name: Agent Capability Tests Int
 on: 
   workflow_dispatch:
 
+permissions: {}
+
 jobs:
   test-host-outbound:
+    permissions:
+      contents: read  # for actions/checkout to fetch code
     runs-on: ubuntu-latest
     steps:
       - name: Harden Runner
-        uses: step-security/harden-runner@rc-20-int
+        uses: step-security/harden-runner@b458cf61e24e167c05a441dec5234b240974af45 # rc-20-int
         with:
             egress-policy: block
             allowed-endpoints: >
@@ -73,11 +77,13 @@ jobs:
       
   
   test-docker-outbound:
+    permissions:
+      contents: read  # for actions/checkout to fetch code
     name: "aws-azure / deploy-to-azure (dev-eastus-aks, eastus, dev-eks, dev, 3b336658-ae85-437c-8a28-ea10aedc232a, fals12345"
     runs-on: LargeRunner
     steps:
       - name: Harden Runner
-        uses: step-security/harden-runner@rc-20-int
+        uses: step-security/harden-runner@b458cf61e24e167c05a441dec5234b240974af45 # rc-20-int
         with:
           egress-policy: audit
           allowed-endpoints: >
@@ -178,10 +184,12 @@ jobs:
       - run: cat /etc/resolv.conf
       - run: cat /run/systemd/resolve/resolv.conf
   test-docker-build-outbound:
+    permissions:
+      contents: read  # for actions/checkout to fetch code
     runs-on: ubuntu-24.04
     steps:
       - name: Harden Runner
-        uses: step-security/harden-runner@rc-20-int
+        uses: step-security/harden-runner@b458cf61e24e167c05a441dec5234b240974af45 # rc-20-int
         with:
           egress-policy: block
           allowed-endpoints: >
@@ -231,10 +239,12 @@ jobs:
         run: wget https://www.amazon.in/
       
   test-long-running-docker:
+    permissions:
+      contents: read  # for actions/checkout to fetch code
     runs-on: ARMLinuxRunner
     steps:
       - name: Harden Runner
-        uses: step-security/harden-runner@rc-20-int
+        uses: step-security/harden-runner@b458cf61e24e167c05a441dec5234b240974af45 # rc-20-int
         with:
           egress-policy: block
           allowed-endpoints: >

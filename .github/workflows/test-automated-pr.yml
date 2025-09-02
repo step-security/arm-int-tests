@@ -5,26 +5,36 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
+      - name: Harden the runner (Audit all outbound calls)
+        uses: step-security/harden-runner@ec9f2d5744a09debf3a187a3f4f675c53b671911 # v2.13.0
+        with:
+          egress-policy: audit
+
       - uses: actions/checkout@v3
-      - uses: amannn/action-semantic-pull-request@v5
+      - uses: step-security/action-semantic-pull-request@9142b539761b0ed6761de569f3a5020a7462a7f3 # v5.5.6
         with:
           types: feat,fix,chore
-      - uses: fkirc/skip-duplicate-actions@v5
+      - uses: step-security/skip-duplicate-actions@b3d8c3d1690b4b67c110996d3c50daaa93cf8e80 # v5.3.2
         with:
           do_not_skip: '["release"]'
-      - uses: chetan/git-restore-mtime-action@v1
+      - uses: step-security/git-restore-mtime-action@588924b9e7bd47cb862bb47431f4453e0b0ba589 # v2.1.0
         with:
           pattern: '**/*'
 
   lint:
     runs-on: ubuntu-latest
     steps:
+      - name: Harden the runner (Audit all outbound calls)
+        uses: step-security/harden-runner@ec9f2d5744a09debf3a187a3f4f675c53b671911 # v2.13.0
+        with:
+          egress-policy: audit
+
       - uses: actions/checkout@v1
-      - uses: github/super-linter@v3
+      - uses: github/super-linter@34b2f8032d759425f6b42ea2e52231b33ae05401 # v3.17.1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DISABLE_ERRORS: true
-      - uses: tespkg/actions-cache/restore@v1
+      - uses: step-security/s3-actions-cache/restore@5e2733c53fd0741f2ad659f1b6ac6e18a19e0395 # v1.9.0
         with:
           path: ~/.npm
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}

@@ -2,12 +2,16 @@ name: Config change test
 on: 
   workflow_dispatch:
 
+permissions: {}
+
 jobs:
   test-host-outbound:
+    permissions:
+      contents: read  # for actions/checkout to fetch code
     runs-on: ubuntu-latest
     steps:
       - name: Harden Runner
-        uses: step-security/harden-runner@rc
+        uses: step-security/harden-runner@17d38b322b06d1108e77a84fb02658a27c4a7eb0 # rc
         with:
           egress-policy: audit
           allowed-endpoints: >
@@ -32,10 +36,12 @@ jobs:
           done
   
   test-docker-outbound:
+    permissions:
+      contents: read  # for actions/checkout to fetch code
     runs-on: ubuntu-20.04
     steps:
       - name: Harden Runner
-        uses: step-security/harden-runner@rc
+        uses: step-security/harden-runner@17d38b322b06d1108e77a84fb02658a27c4a7eb0 # rc
         with:
           egress-policy: audit
           allowed-endpoints: >
@@ -84,10 +90,12 @@ jobs:
       - run: cat /etc/resolv.conf
       - run: cat /run/systemd/resolve/resolv.conf
   test-docker-build-outbound:
+    permissions:
+      contents: read  # for actions/checkout to fetch code
     runs-on: ubuntu-24.04
     steps:
       - name: Harden Runner
-        uses: step-security/harden-runner@rc
+        uses: step-security/harden-runner@17d38b322b06d1108e77a84fb02658a27c4a7eb0 # rc
         with:
           egress-policy: audit
           allowed-endpoints: >
@@ -133,10 +141,17 @@ jobs:
       - run: cat /etc/resolv.conf
       - run: cat /run/systemd/resolve/resolv.conf
   test-long-running-docker:
+    permissions:
+      contents: read  # for actions/checkout to fetch code
     runs-on: ubuntu-latest
     steps:
       
             
+
+      - name: Harden the runner (Audit all outbound calls)
+        uses: step-security/harden-runner@ec9f2d5744a09debf3a187a3f4f675c53b671911 # v2.13.0
+        with:
+          egress-policy: audit
 
       - run: cat /etc/resolv.conf
       
