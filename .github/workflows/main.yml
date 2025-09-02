@@ -3,8 +3,12 @@ name: DNS Resolution Test for file:// URLs
 on:
   workflow_dispatch:
 
+permissions: {}
+
 jobs:
   test-dns-resolution:
+    permissions:
+      contents: read  # for actions/checkout to fetch code
     runs-on: ubuntu-latest
     
     steps:
