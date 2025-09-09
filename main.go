@@ -204,7 +204,7 @@ func main() {
 	}
 	
 	// Print summary
-	fmt.Println("\n=====================================")
+	fmt.Println("\n======================================")
 	fmt.Println("SUMMARY")
 	fmt.Println("=====================================")
 	fmt.Printf("Total domains checked: %d\n", len(domains))
