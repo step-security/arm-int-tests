@@ -30,11 +30,11 @@ jobs:
           
           echo "Checking for agent.config and agent.log..."
           
-          if [ -f /home/agent/agent.config ]; then
-            echo "Contents of agent.config:"
-            cat /home/agent/agent.config
+          if [ -f /home/agent/agent.json ]; then
+            echo "Contents of agent.json:"
+            cat /home/agent/agent.json
           else
-            echo "agent.config not found."
+            echo "agent.json not found."
           fi
           
           if [ -f /home/agent/agent.log ]; then
