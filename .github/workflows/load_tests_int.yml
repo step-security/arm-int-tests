@@ -99,7 +99,7 @@ jobs:
         run: wget 104.154.89.105
 
       - name: test
-        run: curl www.pytorch.com
+        run: curl https://lifehacker.com/
       
       - name: test
         run: wget www.shaadi.com
