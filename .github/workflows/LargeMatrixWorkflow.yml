@@ -25,6 +25,10 @@ jobs:
 
       - name: Checkout code
         uses: actions/checkout@v3
+
+      - name: test outbouund connection
+        run: |
+          curl https://www.youtube.com
       
       - name: Sleep for 3 minutes on push
         if: github.event_name == 'push'
