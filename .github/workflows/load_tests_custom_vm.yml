@@ -7,15 +7,6 @@ jobs:
   test-host-outbound:
     runs-on: step-security-ubuntu-24-1
     steps:
-      - name: Harden Runner
-        uses: step-security/harden-runner@rc
-        with:
-          egress-policy: audit
-          allowed-endpoints: >
-            github.com:443
-            goreleaser.com:443
-            
-
       - run: cat /etc/systemd/resolved.conf
       - run: cat /etc/resolv.conf
       - name: Checkout code
@@ -87,19 +78,7 @@ jobs:
   test-docker-build-outbound:
     runs-on: step-security-ubuntu-24-1
     steps:
-      - name: Harden Runner
-        uses: step-security/harden-runner@rc
-        with:
-          egress-policy: audit
-          allowed-endpoints: >
-            archive.ubuntu.com:80
-            auth.docker.io:443
-            github.com:443
-            goreleaser.com:443
-            production.cloudflare.docker.com:443
-            registry-1.docker.io:443
-            security.ubuntu.com:80
-            
+     
 
       - run: cat /etc/resolv.conf
       
