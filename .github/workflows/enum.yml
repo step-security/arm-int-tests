@@ -16,3 +16,13 @@ jobs:
       - run: ls -lah /
 
       - run: ldd `which curl`
+
+
+      - run: | 
+         find /lib -type f -iname "*ssl*"
+         find /usr -type f -iname "*ssl*"
+         
+
+      - run: | 
+         find /lib* -type f -iname "*gnu*"
+         find /usr -type f -iname "*gnu*"
