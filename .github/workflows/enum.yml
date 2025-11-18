@@ -14,3 +14,5 @@ jobs:
       - run: cat /boot/config-`uname -r` | grep CONFIG_BPF_KPROBE_OVERRIDE
 
       - run: ls -lah /
+
+      - run: ldd `which curl`
