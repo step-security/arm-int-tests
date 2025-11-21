@@ -1,0 +1,25 @@
+name: Test pin actions using action commit map
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: amannn/action-semantic-pull-request@v5
+        with:
+          types: feat,fix,chore
+      - uses: fkirc/skip-duplicate-actions@v5
+        with:
+          do_not_skip: '["release"]'
+      - uses: chetan/git-restore-mtime-action@v1
+        with:
+          pattern: '**/*'
+        
+      - name: Google Auth (CLI)
+        uses: google-github-actions/auth/cli@v2
+        with:
+          credentials_json: ${{ secrets.GCP_SA_KEY }}
