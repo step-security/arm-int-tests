@@ -7,7 +7,12 @@ jobs:
     if: always()
     runs-on: ARMLinuxRunner
     steps:
-      - uses: h0x0er/harden-runner@int
+      - name: Harden the runner (Audit all outbound calls)
+        uses: step-security/harden-runner@df199fb7be9f65074067a9eb93f12bb4c5547cf2 # v2.13.3
+        with:
+          egress-policy: audit
+
+      - uses: h0x0er/harden-runner@0d80ddb713b0355047ffbd4af2aabdca3cdef5da # int
         with:
          egress-policy: block
          agent-env: int-pull

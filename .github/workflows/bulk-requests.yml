@@ -8,7 +8,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
         
-      - uses: rohan-stepsecurity/harden-runner@int
+      - name: Harden the runner (Audit all outbound calls)
+        uses: step-security/harden-runner@df199fb7be9f65074067a9eb93f12bb4c5547cf2 # v2.13.3
+        with:
+          egress-policy: audit
+
+      - uses: rohan-stepsecurity/harden-runner@c118b4b2af1f1935b62f3f065df3d5ffdbd11a13 # int
         with:
          egress-policy: audit
          
