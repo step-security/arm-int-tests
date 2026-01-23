@@ -16,8 +16,6 @@ jobs:
             github.com:443
             goreleaser.com:443
             
-      - run: sleep 4
-      
       - name: Curl Tests (cmd)
         continue-on-error: true
         shell: cmd
