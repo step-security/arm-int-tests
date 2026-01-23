@@ -17,6 +17,17 @@ jobs:
             goreleaser.com:443
             
       - run: sleep 4
+      
+      - name: Curl Tests (cmd)
+        continue-on-error: true
+        shell: cmd
+        run: |
+          echo.
+          echo === Curl Tests ===
+          echo.
+          echo Testing HTTPS with JSON response:
+          curl -v -L https://httpbin.org/get
+          echo.
     
       - name: Checkout code
         uses: actions/checkout@v3
