@@ -17,8 +17,7 @@ jobs:
             goreleaser.com:443
             
 
-      - run: cat /etc/systemd/resolved.conf
-      - run: cat /etc/resolv.conf
+    
       - name: Checkout code
         uses: actions/checkout@v3
             
@@ -49,9 +48,7 @@ jobs:
             security.ubuntu.com:80
             
 
-      - run: cat /etc/resolv.conf
-      - run: cat /run/systemd/resolve/resolv.conf
-            
+
       - name: Checkout code
         uses: actions/checkout@v3
 
