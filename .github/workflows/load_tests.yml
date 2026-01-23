@@ -6,7 +6,7 @@ on:
 
 jobs:
   test-host-outbound:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     steps:
       - name: Harden Runner
         uses: step-security/harden-runner@windows
@@ -34,7 +34,7 @@ jobs:
           done
   
   test-docker-outbound:
-    runs-on: ubuntu-22.04
+    runs-on: windows-latest
     steps:
       - name: Harden Runner
         uses: step-security/harden-runner@windows
