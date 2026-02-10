@@ -14,7 +14,6 @@ jobs:
           allowed-endpoints: >
             github.com:443
             goreleaser.com:443
-            
 
       - run: cat /etc/systemd/resolved.conf
       - run: cat /etc/resolv.conf
