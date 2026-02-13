@@ -41,7 +41,7 @@ jobs:
     runs-on: macos-latest
     steps:
       - name: Harden Runner (Audit Mode)
-        uses: step-security/harden-runner@macos
+        uses: step-security/harden-runner@rc
         with:
           egress-policy: audit
 
@@ -72,7 +72,7 @@ jobs:
     runs-on: windows-latest
     steps:
       - name: Harden Runner (Audit Mode)
-        uses: step-security/harden-runner@windows
+        uses: step-security/harden-runner@rc
         with:
           egress-policy: audit
 
