@@ -55,7 +55,7 @@ jobs:
           end_time=$((start_time + 90))
           while [ $(date +%s) -lt $end_time ]; do
             curl -I https://www.google.com
-            curl -I https://goreleaser.com
+            curl -I https://evil.invalid
             sleep 10
           done
   
