@@ -1,0 +1,31 @@
+name: Policy Store - Workflow Level
+
+on: 
+  workflow_dispatch:
+    inputs:
+      ami-id:
+        description: 'AMI ID to use for the runners'
+        required: true
+
+jobs:
+  workflow-level-policy:
+    runs-on:
+      - runs-on=${{ github.run_id }}
+      - runner=2cpu-linux-x64
+      - ami=${{ inputs.ami-id }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: call google
+        run: |
+          curl https://google.com
+
+      - name: call bing
+        run: |
+          curl https://bing.com
+
+      - name: call microsoft
+        run: |
+          curl https://microsoft.com
