@@ -3,8 +3,12 @@ name: Outbound network call by infra process
 on:
   workflow_dispatch: { }
 
+permissions: {}
+
 jobs:
   outbound-call:
+    permissions:
+      contents: read  # for actions/checkout to fetch code
     runs-on: ubuntu-latest
     steps:
       - uses: step-security/harden-runner@rc
@@ -12,7 +16,7 @@ jobs:
           egress-policy: audit
 
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@a37ce9120846195fa4ece8f58b268e6043cb2f26 # v3.7.0
 
       - name: Install curl
         run: sudo apt-get update && sudo apt-get install -y curl
@@ -35,6 +39,8 @@ jobs:
           sleep 90   # keep the job alive long enough to see it run
 
   test-docker-build-outbound:
+    permissions:
+      contents: read  # for actions/checkout to fetch code
     runs-on: ubuntu-latest
     steps:
       - name: Harden Runner
@@ -53,7 +59,7 @@ jobs:
       - run: cat /etc/resolv.conf
 
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@a37ce9120846195fa4ece8f58b268e6043cb2f26 # v3.7.0
 
       - name: Build Docker image and test outbound calls during build
         continue-on-error: true
