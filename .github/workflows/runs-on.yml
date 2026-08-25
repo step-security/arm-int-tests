@@ -78,7 +78,7 @@ jobs:
             docker-images-prod.6aa30f8b08e16409b46e0173d6de2f56.r2.cloudflarestorage.com:443
             *.docker.io:443
             security.ubuntu.com:80
-            ports.ubuntu.com:443
+            ports.ubuntu.com:*
       
       - run: cat /etc/resolv.conf
       - run: cat /run/systemd/resolve/resolv.conf
@@ -169,7 +169,7 @@ jobs:
             registry-1.docker.io:443
             docker-images-prod.6aa30f8b08e16409b46e0173d6de2f56.r2.cloudflarestorage.com:443
             security.ubuntu.com:80
-            ports.ubuntu.com:443
+            ports.ubuntu.com:*
       
       - run: cat /etc/resolv.conf
       - name: Checkout code
