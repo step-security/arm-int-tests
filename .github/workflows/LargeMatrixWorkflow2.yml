@@ -9,8 +9,12 @@ on:
         default: '100' # Default value as a string
   pull_request:
 
+permissions: {}
+
 jobs:
   setup-job:
+    permissions:
+      contents: read
     name: Setup Job
     runs-on: ubuntu-24.04-arm
     steps:
@@ -23,6 +27,8 @@ jobs:
         run: sleep 60
 
   generate-jobs:
+    permissions:
+      contents: read  # for actions/checkout to fetch code
     name: Generate Jobs
     needs: setup-job
     runs-on: ubuntu-latest
@@ -36,7 +42,7 @@ jobs:
           egress-policy: audit
 
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@a37ce9120846195fa4ece8f58b268e6043cb2f26 # v3.7.0
       
       - name: Make a curl request
         run: curl https://google.com

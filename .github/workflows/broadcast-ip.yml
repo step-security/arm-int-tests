@@ -3,8 +3,12 @@ name: Broadcast IP Test
 on:
   workflow_dispatch:
 
+permissions: {}
+
 jobs:
   broadcast-test-hr-latest:
+    permissions:
+      contents: read
     runs-on: ubuntu-latest
     steps:
 

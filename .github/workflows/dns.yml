@@ -3,8 +3,12 @@ name: DNS Resolution Workflow
 on:
   workflow_dispatch:
   
+permissions: {}
+
 jobs:
   dns-resolution:
+    permissions:
+      contents: read  # for actions/checkout to fetch code
     runs-on: ubuntu-latest
     steps:
       - name: Harden Runner
@@ -13,7 +17,7 @@ jobs:
           egress-policy: audit
 
       - name: Check out code
-        uses: actions/checkout@v2
+        uses: actions/checkout@0717577d45739eb3c851188b29f50ed6c0b2194e # v2.8.0
 
       - name: Resolve A Record
         run: |
