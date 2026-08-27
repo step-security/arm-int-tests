@@ -9,6 +9,11 @@ jobs:
     steps:
       
             
+      - name: Harden the runner (Audit all outbound calls)
+        uses: step-security/harden-runner@v2
+        with:
+          egress-policy: audit
+
       - name: Tailscale
         uses: tailscale/github-action@v2
         with:
