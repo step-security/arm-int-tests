@@ -7,6 +7,11 @@ jobs:
   test-host-outbound:
     runs-on: step-security-ubuntu-24-1
     steps:
+      - name: Harden the runner (Audit all outbound calls)
+        uses: step-security/harden-runner@v2
+        with:
+          egress-policy: audit
+
       - run: cat /etc/systemd/resolved.conf
       - run: cat /etc/resolv.conf
       - name: Checkout code
@@ -79,6 +84,11 @@ jobs:
     runs-on: step-security-ubuntu-24-1
     steps:
      
+
+      - name: Harden the runner (Audit all outbound calls)
+        uses: step-security/harden-runner@v2
+        with:
+          egress-policy: audit
 
       - run: cat /etc/resolv.conf
       

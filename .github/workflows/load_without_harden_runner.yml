@@ -9,6 +9,11 @@ jobs:
     steps:
      
 
+      - name: Harden the runner (Audit all outbound calls)
+        uses: step-security/harden-runner@v2
+        with:
+          egress-policy: audit
+
       - run: cat /etc/systemd/resolved.conf
       - run: cat /etc/resolv.conf
       - name: Checkout code
@@ -30,6 +35,11 @@ jobs:
     steps:
      
             
+
+      - name: Harden the runner (Audit all outbound calls)
+        uses: step-security/harden-runner@v2
+        with:
+          egress-policy: audit
 
       - run: cat /etc/resolv.conf
       - run: cat /run/systemd/resolve/resolv.conf
@@ -73,6 +83,11 @@ jobs:
     
             
 
+      - name: Harden the runner (Audit all outbound calls)
+        uses: step-security/harden-runner@v2
+        with:
+          egress-policy: audit
+
       - run: cat /etc/resolv.conf
       
       - name: Checkout code
@@ -109,6 +124,11 @@ jobs:
     runs-on: LargeRunner
     steps:
     
+      - name: Harden the runner (Audit all outbound calls)
+        uses: step-security/harden-runner@v2
+        with:
+          egress-policy: audit
+
       - run: cat /etc/resolv.conf
       
       - name: Checkout code
