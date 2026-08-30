@@ -56,7 +56,7 @@ jobs:
       - run: cat /etc/resolv.conf
       
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v5
       - run: curl https://registry.npmjs.org/
       - run: curl www.amazon.com:443
       - name: Run outbound calls from host
@@ -145,7 +145,7 @@ jobs:
       - run: cat /run/systemd/resolve/resolv.conf
     
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v5
 
       - name: Run outbound calls from within Docker container
         continue-on-error: true
@@ -198,7 +198,7 @@ jobs:
      
       
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v5
 
       - name: Build Docker image and test outbound calls during build
         continue-on-error: true
@@ -253,7 +253,7 @@ jobs:
     
       
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v5
 
       - name: Run long-running Docker container with outbound calls
         continue-on-error: true

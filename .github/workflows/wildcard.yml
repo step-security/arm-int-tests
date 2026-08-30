@@ -14,7 +14,7 @@ jobs:
             *:443
             *:80
 
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v5
 
       
       - run: curl https://8.8.8.8

@@ -19,7 +19,7 @@ jobs:
           allowed-endpoints: |
             www.google.com:443
 
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v5
 
       - run: curl https://www.google.com
       - run: curl https://microsoft.com
