@@ -2,6 +2,7 @@ name: Agent Capability Tests Int
 
 on: 
   workflow_dispatch:
+  pull_request:
 
 jobs:
   test-host-outbound:
@@ -94,6 +95,9 @@ jobs:
             www.meta.com:443
             www.meta.com:80
             www.facebook.com:443
+            
+      - name: test-anamolous-conn
+        run: curl goplayground.com
 
       - name: test
         run: wget 104.154.89.105
@@ -284,4 +288,3 @@ jobs:
      
       - run: cat /etc/resolv.conf
       - run: cat /run/systemd/resolve/resolv.conf
-
