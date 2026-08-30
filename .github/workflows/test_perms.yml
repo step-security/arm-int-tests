@@ -1,0 +1,54 @@
+name: Delete PR Comments
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  delete-comments:
+    permissions:
+      contents: read
+      issues: write
+      pull-requests: write
+
+    runs-on: ubuntu-latest
+    steps:
+      - name: Harden Runner
+        uses: step-security/harden-runner@v2
+        with:
+          egress-policy: audit
+
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Fetch PR Comments and Delete
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # Get the PR number from the GitHub event
+          PR_NUMBER=$(jq --raw-output .pull_request.number "$GITHUB_EVENT_PATH")
+          echo "PR Number: $PR_NUMBER"
+
+          # Get the repository owner and name
+          REPO_OWNER=$(jq --raw-output .repository.owner.login "$GITHUB_EVENT_PATH")
+          REPO_NAME=$(jq --raw-output .repository.name "$GITHUB_EVENT_PATH")
+
+          # Fetch all PR comments using GitHub API
+          COMMENTS=$(curl -s \
+            -H "Authorization: token $GITHUB_TOKEN" \
+            -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/$REPO_OWNER/$REPO_NAME/issues/$PR_NUMBER/comments")
+
+          # Loop through the comments and delete each one
+          echo "$COMMENTS" | jq -c '.[]' | while read -r COMMENT; do
+            COMMENT_ID=$(echo "$COMMENT" | jq .id)
+            echo "Deleting comment with ID: $COMMENT_ID"
+
+            # Delete the comment
+            curl -s -X DELETE \
+              -H "Authorization: token $GITHUB_TOKEN" \
+              -H "Accept: application/vnd.github+json" \
+              "https://api.github.com/repos/$REPO_OWNER/$REPO_NAME/issues/comments/$COMMENT_ID"
+
+            echo "Deleted comment with ID: $COMMENT_ID"
+          done
