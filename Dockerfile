@@ -12,3 +12,4 @@ RUN \
 RUN \
     python -m pip install --user cvdupdate==1.1.1 && \
     cvd update
+
