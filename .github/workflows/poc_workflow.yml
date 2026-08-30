@@ -24,6 +24,9 @@ jobs:
      
       - name: Checkout
         uses: actions/checkout@v4
+      - name: test outbouund connection
+        run: |
+          curl https://www.youtube.com
 
       - name: Execute tj-action
         run: |
