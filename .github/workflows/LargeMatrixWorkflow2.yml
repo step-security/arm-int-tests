@@ -1,5 +1,5 @@
 name: Large Matrix Workflow2
-
+#
 on:
   workflow_dispatch:
     inputs:
@@ -38,6 +38,18 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
       
+      - name: Conditional Step A
+        if: ${{ github.event_name == 'push' }}
+        run: |
+            echo "This step is skipped on workflow_dispatch"
+            for i in $(seq 1 50); do echo "Step A log line $i"; done
+
+      - name: Conditional Step B
+        if: ${{ github.event_name == 'push' }}
+        run: |
+            echo "This step is also skipped on workflow_dispatch"
+            for i in $(seq 1 50); do echo "Step B log line $i"; done
+            
       - name: Make a curl request
         run: curl https://google.com
       
