@@ -1,0 +1,100 @@
+name: Harden Runner Multi-OS Test
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  ubuntu:
+    name: Ubuntu Job
+    runs-on: ubuntu-latest
+    steps:
+      - name: Harden Runner (Audit Mode)
+        uses: step-security/harden-runner@rc
+        with:
+          egress-policy: audit
+
+      - name: Curl multiple domains
+        run: |
+          curl -s https://example.com
+          sleep 2
+          curl -s https://google.com
+          sleep 1
+          curl -s https://github.com
+          sleep 2
+          curl -s https://api.github.com
+          sleep 1
+          curl -s https://cloudflare.com
+          sleep 2
+          curl -s https://aws.amazon.com
+          sleep 1
+          curl -s https://azure.microsoft.com
+          sleep 2
+          curl -s https://docs.docker.com
+          sleep 1
+          curl -s https://kubernetes.io
+          sleep 2
+          curl -s https://npmjs.com
+
+  macos:
+    name: macOS Job
+    runs-on: macos-latest
+    steps:
+      - name: Harden Runner (Audit Mode)
+        uses: step-security/harden-runner@rc
+        with:
+          egress-policy: audit
+
+      - name: Curl multiple domains
+        run: |
+          curl -s https://example.com
+          sleep 2
+          curl -s https://apple.com
+          sleep 1
+          curl -s https://github.com
+          sleep 2
+          curl -s https://api.github.com
+          sleep 1
+          curl -s https://cloudflare.com
+          sleep 2
+          curl -s https://aws.amazon.com
+          sleep 1
+          curl -s https://developer.apple.com
+          sleep 2
+          curl -s https://brew.sh
+          sleep 1
+          curl -s https://kubernetes.io
+          sleep 2
+          curl -s https://npmjs.com
+
+  windows:
+    name: Windows Job
+    runs-on: windows-latest
+    steps:
+      - name: Harden Runner (Audit Mode)
+        uses: step-security/harden-runner@rc
+        with:
+          egress-policy: audit
+
+      - name: Curl multiple domains
+        shell: bash
+        run: |
+          curl -s https://example.com
+          sleep 2
+          curl -s https://microsoft.com
+          sleep 1
+          curl -s https://github.com
+          sleep 2
+          curl -s https://api.github.com
+          sleep 1
+          curl -s https://cloudflare.com
+          sleep 2
+          curl -s https://learn.microsoft.com
+          sleep 1
+          curl -s https://azure.microsoft.com
+          sleep 2
+          curl -s https://powershellgallery.com
+          sleep 1
+          curl -s https://kubernetes.io
+          sleep 2
+          curl -s https://npmjs.com
