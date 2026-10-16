@@ -5,7 +5,7 @@ on:
 
 jobs:
   outbound-call:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     steps:
       - uses: step-security/harden-runner@rc
         with:
@@ -35,7 +35,7 @@ jobs:
           sleep 90   # keep the job alive long enough to see it run
 
   test-docker-build-outbound:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     steps:
       - name: Harden Runner
         uses: step-security/harden-runner@rc
