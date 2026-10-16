@@ -5,7 +5,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     outputs:
       artifact-name: ${{ steps.upload.outputs.artifact-name }}
 
@@ -59,7 +59,7 @@ jobs:
 
   consume:
     needs: build
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
 
     steps:
 
