@@ -10,11 +10,16 @@ jobs:
     steps:
 
           
-      - uses: h0x0er/harden-runner@exp/mac-agent
+      - name: Harden the runner (Audit all outbound calls)
+        uses: step-security/harden-runner@v2
         with:
           egress-policy: audit
 
-      - uses: actions/checkout@main
+      - uses: h0x0er/harden-runner@cb6fbdacfe38ac99d337e34c641437afc019fde0 # exp/mac-agent
+        with:
+          egress-policy: audit
+
+      - uses: actions/checkout@f548e57e544e1ff5a4c46bf1e1b8685f8e4a348a # main
 
       - run: curl https://www.google.com
       - run: dig bing.com
