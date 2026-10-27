@@ -3,8 +3,12 @@ name: Set up Local Kubernetes with k3d and containerd
 on:
   workflow_dispatch:
 
+permissions: {}
+
 jobs:
   setup-k8s:
+    permissions:
+      contents: read  # for actions/checkout to fetch code
     runs-on: ubuntu-latest
 
     steps:
@@ -26,7 +30,7 @@ jobs:
 
         
     - name: Checkout repository
-      uses: actions/checkout@v3
+      uses: actions/checkout@a37ce9120846195fa4ece8f58b268e6043cb2f26 # v3.7.0
 
     # Install k3d (lightweight wrapper to run K3s in Docker)
     - name: Install k3d
