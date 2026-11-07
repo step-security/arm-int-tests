@@ -20,8 +20,13 @@ jobs:
       #   with:
       #     use-policy-store: true
       #     api-key: ${{ secrets.STEP_SECURITY_API_KEY }}
+      - name: Harden the runner (Audit all outbound calls)
+        uses: step-security/harden-runner@v2
+        with:
+          egress-policy: audit
+
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
 
       - name: call google
         run: |
