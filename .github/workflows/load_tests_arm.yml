@@ -3,8 +3,12 @@ name: Agent Capability Tests - ARM
 on: 
   workflow_dispatch:
 
+permissions: {}
+
 jobs:
   test-host-outbound:
+    permissions:
+      contents: read  # for actions/checkout to fetch code
     runs-on: ARMLinuxRunner
     steps:
       - name: Harden Runner
@@ -19,7 +23,7 @@ jobs:
       - run: cat /etc/systemd/resolved.conf
       - run: cat /etc/resolv.conf
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@a37ce9120846195fa4ece8f58b268e6043cb2f26 # v3.7.0
             
       - name: Run outbound calls from host
         run: |
@@ -33,6 +37,8 @@ jobs:
           done
   
   test-docker-outbound:
+    permissions:
+      contents: read  # for actions/checkout to fetch code
     runs-on: ARMLinuxRunner
     steps:
       - name: Harden Runner
@@ -52,7 +58,7 @@ jobs:
       - run: cat /run/systemd/resolve/resolv.conf
       
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@a37ce9120846195fa4ece8f58b268e6043cb2f26 # v3.7.0
 
       - name: Run outbound calls from within Docker container
         continue-on-error: true
@@ -85,6 +91,8 @@ jobs:
       - run: cat /etc/resolv.conf
       - run: cat /run/systemd/resolve/resolv.conf
   test-docker-build-outbound:
+    permissions:
+      contents: read  # for actions/checkout to fetch code
     runs-on: ARMLinuxRunner
     steps:
       - name: Harden Runner
@@ -104,7 +112,7 @@ jobs:
       - run: cat /etc/resolv.conf
       
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@a37ce9120846195fa4ece8f58b268e6043cb2f26 # v3.7.0
 
       - name: Build Docker image and test outbound calls during build
         continue-on-error: true
@@ -134,6 +142,8 @@ jobs:
       - run: cat /etc/resolv.conf
       - run: cat /run/systemd/resolve/resolv.conf
   test-long-running-docker:
+    permissions:
+      contents: read  # for actions/checkout to fetch code
     runs-on: ARMLinuxRunner
     steps:
       - name: Harden Runner
@@ -153,7 +163,7 @@ jobs:
       - run: cat /etc/resolv.conf
       
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@a37ce9120846195fa4ece8f58b268e6043cb2f26 # v3.7.0
 
       - name: Run long-running Docker container with outbound calls
         continue-on-error: true
