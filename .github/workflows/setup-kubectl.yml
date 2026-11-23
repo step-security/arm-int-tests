@@ -13,7 +13,7 @@ jobs:
         with:
           egress-policy: audit
 
-      - uses: azure/setup-kubectl@vv4.0.0
+      - uses: azure/setup-kubectl@0c5e050edfed71b2b50731ab044d42489d51c129 # vv4.0.0
       - run: sleep 300
         
            
