@@ -3,6 +3,8 @@ name: Test Fail with Compromised Action
 on:
   workflow_dispatch:
 
+permissions: {}
+
 jobs:
   test-fail:
     runs-on: ubuntu-latest
@@ -22,7 +24,7 @@ jobs:
 
 
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
 
       - name: Use compromised action (should be blocked)
         uses: step-security/dummy-compromised-action@v1
